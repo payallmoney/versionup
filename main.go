@@ -46,7 +46,6 @@ func versionup(r render.Render) {
 	currentversion := float64(getCurrentVersion())
 	log.Println(currentversion, result["version"])
 	//不相等就替换,解决版本回退的问题
-	//TODO 偶尔出现无法替换文件的问题,需要更多测试判断情况 , link问题 , link的文件与当前link文件一致
 	if currentversion != result["version"].(float64) {
 		//如果小于 , 执行更新
 		newFile := downfile(result["src"].(string))
@@ -59,6 +58,8 @@ func versionup(r render.Render) {
 		log.Println(program_path+program_name,newFile)
 		err = os.Link(newFile,program_path+program_name)
 		checkerr(err)
+		//设置当前程序为可执行
+		os.Chmod(program_path+program_name,777)
 		//运行当前程序
 		go runExe(program_path+program_name)
 		checkerr(err)
