@@ -7,7 +7,7 @@ func Cfg() map[string]interface{} {
 	ret["server"] = "121.40.199.41:3000"
 	ret["kodi"] = "localhost:8080"
 	ret["checktime"] = time.Minute*10
-	ret["program_name"] = "test.exe"
-	ret["program_path"] = "/home/pi/videoclient"
+	ret["program_name"] = "videoclient"
+	ret["program_path"] = "/home/pi/"
 	return ret;
 }
