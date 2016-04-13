@@ -13,8 +13,6 @@ import (
 	"runtime"
 	"os/exec"
 "strings"
-"golang.org/x/text/encoding/simplifiedchinese"
-"golang.org/x/text/transform"
 	"bytes"
 	"time"
 )
@@ -164,13 +162,13 @@ func findPid(name string) (pid int ,flag bool){
 	return
 }
 
-func decodeGBK(val string) string{
-	reader := strings.NewReader(val)
-	transformer := transform.NewReader(reader, simplifiedchinese.GBK.NewDecoder())
-	bytes, err := ioutil.ReadAll(transformer)
-	checkerr(err)
-	return string(bytes)
-}
+//func decodeGBK(val string) string{
+//	reader := strings.NewReader(val)
+//	transformer := transform.NewReader(reader, simplifiedchinese.GBK.NewDecoder())
+//	bytes, err := ioutil.ReadAll(transformer)
+//	checkerr(err)
+//	return string(bytes)
+//}
 func getCurrentVersion() int {
 	var rootpath, _ = filepath.Abs(filepath.Dir(os.Args[0]))
 	file, _ := os.Open(rootpath + "/version")
