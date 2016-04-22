@@ -50,10 +50,11 @@ func log_print(msg string) {
 	if logfileerr != nil {
 		log.Fatalf("error opening file: %v", logfileerr)
 	}
-	log.SetOutput(logfile)
+	mWriter := io.MultiWriter(os.Stdout, logfile)
+	log.SetOutput(mWriter)
 	log.Println(msg)
 	logfile.Close();
-	log.SetOutput(nil)
+	log.SetOutput(os.Stdout)
 }
 
 func log_printf(format string, msg string) {
@@ -61,10 +62,11 @@ func log_printf(format string, msg string) {
 	if logfileerr != nil {
 		log.Fatalf("error opening file: %v", logfileerr)
 	}
-	log.SetOutput(logfile)
+	mWriter := io.MultiWriter(os.Stdout, logfile)
+	log.SetOutput(mWriter)
 	log.Printf(format + "\r\n", msg)
 	logfile.Close();
-	log.SetOutput(nil)
+	log.SetOutput(os.Stdout)
 }
 
 

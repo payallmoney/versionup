@@ -28,15 +28,15 @@ func main() {
 	m := martini.Classic()
 	m.Use(render.Renderer())
 	m.Get("/versionup", versionup)
-	//m.Run()
-	m.RunOnAddr(":10002")
+	m.Run()
+	//m.RunOnAddr(":10002")
 }
 
 func versionup(r render.Render) {
 	cfg := Cfg()
 	program_name := cfg["program_name"].(string)
 	program_path := cfg["program_path"].(string)
-	resp, err := http.Get(HttpUrl("/video/program/version"))
+	resp, err := http.Get(HttpUrl("/program/version"))
 	checkerr(err)
 	body, _ := ioutil.ReadAll(resp.Body)
 	var result  map[string]interface{}
@@ -176,7 +176,7 @@ func getCurrentVersion() int {
 	count, err := file.Read(data)
 	var version int
 	version, err = strconv.Atoi(string(data[:count]))
-	if err != nil {
+	if err != nil  {
 		version = 0
 	}
 	return version
