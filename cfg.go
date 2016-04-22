@@ -11,6 +11,6 @@ func Cfg() map[string]interface{} {
 	//ret["program_path"] = "/home/pi/"
 
 	ret["program_name"] = "videoclient"
-	ret["program_path"] = "d:\\"
+	ret["program_path"] = "/home/pi/"
 	return ret;
 }
