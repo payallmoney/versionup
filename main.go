@@ -149,7 +149,7 @@ func findPid(name string) (pid int ,flag bool){
 	}else{
 		//linux
 		///netstat -lnp | grep /main | awk '{print $7}' | awk -F '/' '{print $1}'
-		strs, _ := exec.Command("netstat", "-lnp", "|", "grep", "/"+name, "|", "awk", "'{print", "$7}'", "|", "awk", "-F", "'/'", "'{print", "$1}'").Output();
+		strs, _ := exec.Command("bash","-c","netstat", "-lnp", "|", "grep", "/"+name, "|", "awk", "'{print", "$7}'", "|", "awk", "-F", "'/'", "'{print", "$1}'").Output();
 		str  := strings.TrimSpace(string(strs))
 		if(str == "") {
 			flag = false
