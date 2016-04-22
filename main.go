@@ -28,8 +28,8 @@ func main() {
 	m := martini.Classic()
 	m.Use(render.Renderer())
 	m.Get("/versionup", versionup)
-	m.Run()
-	//m.RunOnAddr(":10002")
+	//m.Run()
+	m.RunOnAddr(":10002")
 }
 
 func versionup(r render.Render) {
